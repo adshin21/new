@@ -21,6 +21,11 @@ app.use(express.static('public'));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended : true}));
 
+let validate = (data) => {
+    if(data.username && data.title  && data.description && data.content)
+        return true;
+    return false;
+}
 
 app.get('/' , async (req , res) => {
     const post = await Post.find({});
@@ -43,19 +48,25 @@ app.get('/post' , (req , res) => {
 });
 
 app.get('/posts/new' , (req , res) => {
-    res.render('create', { validate : true});
+    res.render('create');
 });
 
 app.post('/posts/store' , (req , res) => {
     const data = req.body;
-    Post.create({
-        username : data.username,
-        title : data.title,
-        description : data.description,
-        content : data.content
-    });
 
-    res.redirect('/');
+    if(validate(data)){
+        Post.create({
+            username : data.username,
+            title : data.title,
+            description : data.description,
+            content : data.content
+        });
+        res.redirect('/');
+    }
+    else{
+        res.redirect('/posts/new')
+    }
+    
 })
 app.listen(3000 , () => {
     console.log('Server is listening on Port 3000');
