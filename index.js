@@ -43,7 +43,9 @@ app.get('/contact' , (req , res) => {
 });
 
 
-app.get('/post' , (req , res) => {
+app.get('/post' ,async (req , res) => {
+    // console.log(req.params.id);
+    // const post = await Post.findById({_id : req.params.id });
     res.render('post');
 });
 
