@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const expressSession = require('express-session');
 const connectMongo = require('connect-mongo');
-
+const connectFlash = require('connect-flash');
 
 const createPostController = require('./controllers/createPost');
 const homePageController = require('./controllers/homePage');
@@ -16,7 +16,8 @@ const createUserController = require('./controllers/createUser');
 const storeUserController = require('./controllers/storeUser');
 const loginController = require('./controllers/login');
 const loginUserController = require('./controllers/loginUser');
-const connectFlash = require('connect-flash');
+const logoutController = require('./controllers/logout');
+
 
 
 
@@ -61,9 +62,11 @@ app.get('/', homePageController);
 
 app.get('/post/:id', getPostController);
 
-app.get('/posts/new' , createPostController);
+app.get('/posts/new' , auth , createPostController);
 
-app.post('/posts/store', storePostController);
+app.post('/posts/store', auth , storePostController);
+
+app.get('/auth/logout' , logoutController);
 
 app.get('/auth/login' , redirectIfAuthenticated , loginController);
 
