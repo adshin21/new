@@ -19,7 +19,7 @@ module.exports = (req, res) => {
     upload(req, res, (err) => {
         if (err) {
             console.log(err);
-            res.redirect('/posts/new' , {auth: req.session.userId});
+            res.redirect('/posts/new');
         }
         else{
             const data = req.body;
@@ -30,10 +30,10 @@ module.exports = (req, res) => {
                     ...data,
                     image: `/posts/${file.filename}`
                 });
-                res.redirect('/', {auth: req.session.userId});
+                res.redirect('/');
             }
             else{
-                res.redirect('/posts/new', {auth: req.session.userId});
+                res.redirect('/posts/new');
             }   
         }
     });

@@ -6,10 +6,10 @@ module.exports = (req, res) => {
             const registrationErrors =  Object.keys(error.errors).map(key => error.errors[key].message);
             req.flash('registrationErrors',registrationErrors);
             req.flash('data' , req.body);
-            return res.redirect('/auth/register' , {auth: req.session.userId});
+            return res.redirect('/auth/register');
         }
         else {
-            res.redirect('/', {auth: req.session.userId});
+            res.redirect('/');
         }
     });
 };

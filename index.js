@@ -77,6 +77,6 @@ app.get('/auth/register' , redirectIfAuthenticated , createUserController);
 app.post('/users/register' ,redirectIfAuthenticated , storeUserController);
 
 
-app.listen(4000, () => {
+app.listen(3000, () => {
     console.log('Server is listening on Port 3000');
 });

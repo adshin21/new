@@ -8,19 +8,16 @@ module.exports = (req , res) => {
         if(user){
             bcrypt.compare(password , user.password , (err , same) => {
                 if(same){
-                    console.log('Log in aaa rha hai');
                     req.session.userId = user._id;
-                    return res.redirect({auth: req.session.userId}, '/');
+                    return res.redirect('/');
                 }
                 else{
-                    console.log('Passwd is not same');
-                    return res.redirect({auth: req.session.userId} , '/auth/login');
+                    return res.redirect('/auth/login');
                 }
             });
         }
         else{
-            console.log('Something Bad');
-            return res.redirect({auth: req.session.userId} , '/auth/login');
+            return res.redirect('/auth/login');
         }
     });
 };
