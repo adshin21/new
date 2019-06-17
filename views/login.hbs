@@ -15,11 +15,19 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 offset-md-2">
+            {{#if errors}}
+                <ul class="list-group">
+                    {{#each errors}}
+                        <li class="list-group-item text-danger">{{ this }}</li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+
             <form action="/users/login" method="POST">
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
                         <label>Email</label>
-                        <input type="email" name="email" placeholder="Email" class="form-control">
+                        <input type="email" name="email" value="{{ data.email }}" placeholder="Email" class="form-control">
                     </div>
                 </div>
 
@@ -34,7 +42,7 @@
                 <div class="form-group my-4 text-center">
                     <button class="btn btn-primary">LogIn</button>
                 </div>
-                
+
             </form>
         </div>
     </div>

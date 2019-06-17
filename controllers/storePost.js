@@ -28,7 +28,8 @@ module.exports = (req, res) => {
             if(data.username && data.content && data.title && data.description && file){
                 Post.create({
                     ...data,
-                    image: `/posts/${file.filename}`
+                    image: `/posts/${file.filename}`,
+                    user_id : req.session.userId
                 });
                 res.redirect('/');
             }

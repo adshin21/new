@@ -4,6 +4,11 @@ const PostSchema = new mongoose.Schema({
     title : String,
     description : String,
     content : String,
+    user_id: {
+        type : mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
     username : String,
     image : String,
     createdAt : {
@@ -12,7 +17,5 @@ const PostSchema = new mongoose.Schema({
     }
 });
 
-
 const Post = mongoose.model('Post' , PostSchema);
-
 module.exports = Post
