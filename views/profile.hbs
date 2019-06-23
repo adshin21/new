@@ -1,11 +1,12 @@
 <!-- Page Header -->
-<header class="masthead" style="background-image: url('/img/create-bg.jpg')">
+<header class="masthead" style="background-image: url('/img/settings.png');object-fit: contain;" >
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="page-heading">
-                    <h1>Create a New Account</h1>
+                    <h1>User Profile</h1>
+                    <span class="subheading">Update Your Settings</span>
                 </div>
             </div>
         </div>
@@ -18,15 +19,16 @@
             {{#if errors}}
                 <ul class="list-group">
                     {{#each errors}}
-                        <li class="list-group-item text-danger">{{ this }}</li>
+                        <li class="list-group-item text-danger">{{this}}</li>
                     {{/each}}
                 </ul>
             {{/if}}
-            <form action="/users/register" method="POST">
+            <form action="/profile/store" method="POST">
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
                         <label>Username</label>
-                        <input type="text" name="username" value="{{data.username}}" placeholder="UserName" class="form-control">
+                        <input type="text" name="username" placeholder="UserName (Same as during Sign Up)"  value="{{data.username}}" class="form-control">
+
                     </div>
                 </div>
 
@@ -34,26 +36,37 @@
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
                         <label>Email</label>
-                        <input type="email" name="email" value="{{data.email}}" placeholder="Email" class="form-control">
+                        <input type="text" name="email" placeholder="E-mail (Same as during Sign Up)" value="{{data.email}}" class="form-control">
                     </div>
                 </div>
 
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
-                        <label>Password</label>
-                        <input type="password" name="password" placeholder="Password" class="form-control">
+                        <label>Date of Birth</label>
+                        <input type="text" name="dob" placeholder="Format: YYYY-MM-DD" value="{{data.dob}}" class="form-control">
+
                     </div>
                 </div>
 
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
-                        <label>Confirm Password</label>
-                        <input type="password" name="r_password" placeholder="Confirm Password" class="form-control">
+                        <label>Contact Number</label>
+                        <input type="text" name="phone" placeholder="Contact with Area Code" value="{{data.phone}}" class="form-control">
+
                     </div>
                 </div>
+
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>Web Site</label>
+                        <input type="text" name="website" placeholder="Link to Website" value="{{data.website}}" class="form-control">
+                    </div>
+                </div>
+
+                
 
                 <div class="form-group my-4 text-center">
-                    <button class="btn btn-primary">Sign Up</button>
+                    <button class="btn btn-primary">Update Profile</button>
                 </div>
                 
             </form>

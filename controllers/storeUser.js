@@ -1,4 +1,5 @@
 const User = require('../database/models/Users');
+const Profile = require('../database/models/Profile');
 
 module.exports = async (req, res) => {
 
@@ -29,7 +30,13 @@ module.exports = async (req, res) => {
         }
         else {
             // console.log("yha to nhi aa rha na?");
-            res.redirect('/');
+
+            Profile.create({
+                username: req.body.username,
+                email: req.body.email
+            } , () => res.redirect('/')
+            );
+
         }
     });
 };

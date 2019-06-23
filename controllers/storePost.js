@@ -2,6 +2,7 @@ const multer = require('multer');
 const path = require('path');
 const Post = require('../database/models/Post');
 
+
 const storage = multer.diskStorage({
     destination: path.resolve(__dirname, '..', 'public/posts'),
     filename: (req, file, cb) => {

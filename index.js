@@ -17,13 +17,12 @@ const storeUserController = require('./controllers/storeUser');
 const loginController = require('./controllers/login');
 const loginUserController = require('./controllers/loginUser');
 const logoutController = require('./controllers/logout');
-
-
-
+const profileController = require('./controllers/profile');
+const storeProfileController = require('./controllers/storeProfile');
 
 const app = express();
 
-mongoose.connect('mongodb://localhost/blog', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/blog', { useNewUrlParser: true , useFindAndModify: false , useCreateIndex: true });
 
 app.use(connectFlash());
 
@@ -46,10 +45,6 @@ app.set('view engine', 'hbs');
 app.use(express.static('public'));
 
 
-// app.use('*' ,(req,res,next) => {
-//     hbs.global('auth' , req.session.userId);
-//     next();
-// });
 
 
 app.use(bodyParser.json())
@@ -67,6 +62,10 @@ app.get('/posts/new' , auth , createPostController);
 app.post('/posts/store', auth , storePostController);
 
 app.get('/auth/logout' , logoutController);
+
+app.get('/auth/profile' , profileController);
+
+app.post('/profile/store' , storeProfileController);
 
 app.get('/auth/login' , redirectIfAuthenticated , loginController);
 
