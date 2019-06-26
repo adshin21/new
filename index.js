@@ -30,6 +30,9 @@ const mongoStore = connectMongo(expressSession);
 
 
 app.use(expressSession({
+    // cookie: {
+    //     maxAge: 10000
+    // },
     secret: 'secret',
     store: new mongoStore({
         mongooseConnection: mongoose.connection
@@ -43,8 +46,6 @@ app.set('view engine', 'hbs');
 
 
 app.use(express.static('public'));
-
-
 
 
 app.use(bodyParser.json())
@@ -77,5 +78,5 @@ app.post('/users/register' ,redirectIfAuthenticated , storeUserController);
 
 
 app.listen(3000, () => {
-    console.log('Server is listening on Port 3000');
+    console.log(`http:localhost:${3000}`);
 });

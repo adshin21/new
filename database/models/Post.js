@@ -10,6 +10,7 @@ const PostSchema = new mongoose.Schema({
         required: true
     },
     username : String,
+    email : String,
     image : String,
     createdAt : {
         type : Date,
