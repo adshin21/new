@@ -1,16 +1,11 @@
 const mongoose = require('mongoose');
 
 const PostSchema = new mongoose.Schema({
+    username : String,
+    email : String,
     title : String,
     description : String,
     content : String,
-    user_id: {
-        type : mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
-    username : String,
-    email : String,
     image : String,
     createdAt : {
         type : Date,

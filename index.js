@@ -19,6 +19,7 @@ const loginUserController = require('./controllers/loginUser');
 const logoutController = require('./controllers/logout');
 const profileController = require('./controllers/profile');
 const storeProfileController = require('./controllers/storeProfile');
+const userDetailsController = require('./controllers/userdetails');
 
 const app = express();
 
@@ -76,7 +77,8 @@ app.get('/auth/register' , redirectIfAuthenticated , createUserController);
 
 app.post('/users/register' ,redirectIfAuthenticated , storeUserController);
 
+app.get('/users/:id' , userDetailsController);
 
 app.listen(3000, () => {
-    console.log(`http:localhost:${3000}`);
+    console.log(`http://localhost:${3000}`);
 });

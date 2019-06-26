@@ -1,6 +1,7 @@
 const multer = require('multer');
 const path = require('path');
 const Post = require('../database/models/Post');
+const User = require('../database/models/Users');
 
 
 const storage = multer.diskStorage({
@@ -16,8 +17,8 @@ const upload = multer({
 }).single('image');
 
 
-module.exports = (req, res) => {
-    upload(req, res, (err) => {
+module.exports =  (req, res) => {
+    upload(req, res, async (err) => {
         if (err) {
             console.log(err);
             res.redirect('/posts/new');
@@ -25,12 +26,14 @@ module.exports = (req, res) => {
         else{
             const data = req.body;
             const file = req.file;
-            console.log(req.session.email);
-            if(data.username && data.content && data.title && data.description && file){
+            const userdata = await User.findOne({email: req.session.email});
+            const username = userdata.username;
+
+            if(data.content && data.title && data.description && file){
                 Post.create({
+                    username: username,
                     ...data,
                     image: `/posts/${file.filename}`,
-                    user_id : req.session.userId,
                     email : req.session.email
                 });
                 res.redirect('/');
