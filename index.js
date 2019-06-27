@@ -19,7 +19,7 @@ const loginUserController = require('./controllers/loginUser');
 const logoutController = require('./controllers/logout');
 const profileController = require('./controllers/profile');
 const storeProfileController = require('./controllers/storeProfile');
-const userDetailsController = require('./controllers/userdetails');
+const userDetailsController = require('./controllers/getuser');
 
 const app = express();
 

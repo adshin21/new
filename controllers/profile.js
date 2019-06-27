@@ -1,8 +1,11 @@
-module.exports = (req, res) => {
-    // console.log(req.flash('profileerrors'));
+const User = require('../database/models/Users');
+
+module.exports = async (req, res) => {
+
+    const data = await User.findOne({email: req.session.email});
+    console.log(data);
     res.render('profile', { 
-        auth: req.session.userId, 
-        errors: req.flash('profileerror'), 
-        data: req.flash('data')
+        auth: req.session.userId,
+        data : data
     });
 };

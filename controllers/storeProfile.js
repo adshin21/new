@@ -3,9 +3,11 @@ const User = require('../database/models/Users');
 module.exports = (req , res) => {
     const email = req.session.email;
     const data = req.body;
-    console.log(data);
+    // console.log(data);
     User.findOneAndUpdate({email: email} , {
         $set: {
+            name: data.name,
+            org: data.organization,
             mobile: data.phone,
             dob: data.dob,
             address: data.address,
@@ -25,21 +27,4 @@ module.exports = (req , res) => {
                 res.redirect('/');
             }
     });
-
-
-    // const user = await Profile.find({username: req.body.username , email: req.body.username});
-    // if(user.length){
-    //     Profile.findOneAndUpdate({username: req.body.username} , { $set: {
-    //         dob: req.body.dob,
-    //         contact: req.body.phone,
-    //         website: req.body.website
-    //     }} , () => res.redirect('/'));
-    // }
-    // else{
-    //     // console.log("wrong data");
-    //     const profileerror = "Either Username or E-mail is/are incorrect";
-    //     req.flash('profileerror',profileerror);
-    //     req.flash('data' , data);
-    //     res.redirect('/auth/profile');
-    // }
 }

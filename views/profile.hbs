@@ -25,21 +25,26 @@
             {{/if}}
             <form action="/profile/store" method="POST">
                 
-                {{!-- <div class="control-group">
-                    <div class="form-group floating-label-form-group controls">
-                        <label>Username</label>
-                        <input type="text" name="username" placeholder="UserName (Same as during Sign Up)"  value="{{data.username}}" class="form-control">
+                <div class="profile-card">
+                    <div class="image-container">
+                        <img src="/posts/image-1561647631608.jpg" alt="Upload Your Picture" style="width:200px,margin: auto">
+                    </div>
+                </div>
 
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>Name</label>
+                        <input type="text" name="name" placeholder="FullName"  value="{{data.name}}" class="form-control">
                     </div>
                 </div>
 
 
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
-                        <label>Email</label>
-                        <input type="text" name="email" placeholder="E-mail (Same as during Sign Up)" value="{{data.email}}" class="form-control">
+                        <label>Organization</label>
+                        <input type="text" name="organization" placeholder="Organization" value="{{data.org}}" class="form-control">
                     </div>
-                </div> --}}
+                </div>
 
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">

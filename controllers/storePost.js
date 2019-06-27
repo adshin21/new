@@ -7,7 +7,17 @@ const User = require('../database/models/Users');
 const storage = multer.diskStorage({
     destination: path.resolve(__dirname, '..', 'public/posts'),
     filename: (req, file, cb) => {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+        let name = file.originalname;
+        let n = name.length;
+        let idx = n;
+        for(let i = n-1 ; i >= 0 ; ++i){
+            if(name[i] === '.'){
+                idx = i;
+                break;
+            }
+        }
+        const new_name = name.substring(0,idx);
+        cb(null, new_name + '-' + Date.now() + path.extname(file.originalname));
     }
 });
 
