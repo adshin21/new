@@ -7,6 +7,7 @@ const User = require('../database/models/Users');
 const storage = multer.diskStorage({
     destination: path.resolve(__dirname, '..', 'public/posts'),
     filename: (req, file, cb) => {
+        /*
         let name = file.originalname;
         let n = name.length;
         let idx = n;
@@ -17,7 +18,8 @@ const storage = multer.diskStorage({
             }
         }
         const new_name = name.substring(0,idx);
-        cb(null, new_name + '-' + Date.now() + path.extname(file.originalname));
+        */
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 });
 
@@ -34,6 +36,7 @@ module.exports =  (req, res) => {
             res.redirect('/posts/new');
         }
         else{
+
             const data = req.body;
             const file = req.file;
             const userdata = await User.findOne({email: req.session.email});
@@ -46,9 +49,11 @@ module.exports =  (req, res) => {
                     image: `/posts/${file.filename}`,
                     email : req.session.email
                 });
+                console.log(data , "yha aa rha hai");
                 res.redirect('/');
             }
             else{
+                console.log(data , "log in nhi hai");
                 res.redirect('/posts/new');
             }   
         }

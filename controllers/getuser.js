@@ -7,5 +7,5 @@ module.exports = async (req , res) => {
     let posts = await Post.find({username: req.params.id});
     posts.reverse();
     // console.log(user);
-    res.render('user' , {post : posts , user: user});
+    res.render('user' , {post : posts , userdata: user , profile: true});
 }
